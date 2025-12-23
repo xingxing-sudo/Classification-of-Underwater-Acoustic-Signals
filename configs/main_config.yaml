@@ -1,0 +1,44 @@
+# 实验基本信息
+experiment_name: N_PHYSound_Underwater_Classification
+description: cnn
+#水下声音信号分类实验，对比传统CNN、SOTA模型与物理引导模型
+
+# 数据配置
+data:
+  sample_rate: 16000
+  feature_type: mel
+  max_length: 4096
+  train_data_path: data/processed/train
+  val_data_path: data/processed/val
+  test_data_path: data/processed/test
+  train_labels_path: data/splits/train_labels.txt
+  val_labels_path: data/splits/val_labels.txt
+  test_labels_path: data/splits/test_labels.txt
+
+# 模型配置
+model:
+  num_classes: 4
+  in_channels: 1
+  embed_dim: 768
+  depth: 12
+  num_heads: 12
+  dropout: 0.1
+  mlp_ratio: 4.0
+
+# 训练配置
+train:
+  batch_size: 32
+  epochs: 50
+  lr: 0.0001
+  weight_decay: 0.00001
+  num_workers: 4
+  device: cpu
+  early_stopping_patience: 10
+  save_freq: 5
+
+# 结果保存配置
+results:
+  checkpoint_dir: results/checkpoints
+  results_dir: results
+  figures_dir: results/figures
+  logs_dir: results/logs
